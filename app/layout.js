@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'NextLevel Food',
-  description: 'Delicious meals, shared by a food-loving community.',
+  title: 'Jonny Cookz',
+  description: 'Decent meals for when we are running out of options.',
 };
 
 export default function RootLayout({ children }) {
