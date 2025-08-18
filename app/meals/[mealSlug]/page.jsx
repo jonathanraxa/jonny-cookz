@@ -1,17 +1,24 @@
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 import { getMeal } from '@/lib/meals';
 
 import classes from './page.module.css';
 
 const MealDetailsPage = ({ params }) => {
     const meal = getMeal(params.mealSlug);
+    if (!meal) {
+        // call a special function
+        // finds the closest "not found" page
+        notFound();
+    }
+
     meal.instructions = meal.instructions.replace(/\n/g, '<br />')
 
     return (
         <>
             <header className={classes.header}>
                 <div className={classes.image}>
-                    <Image scr={meal.image} fill />
+                    <Image src={meal.image} fill />
                 </div>
                 <div className={classes.headerText}>
                     <h1>
@@ -39,3 +46,5 @@ export default MealDetailsPage;
 
 // what's this error?
 // Error: Route "/meals/[mealSlug]" used `params.mealSlug`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+
+// why are we doing dangerouslySetInnerHTML?
