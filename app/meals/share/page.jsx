@@ -1,9 +1,11 @@
-import classes from './page.module.css';
+import { useFormState } from 'react-dom';
 import ImagePicker from '../image-picker';
 import { shareMeal } from '@/lib/actions';
 import MealsFormSubmit from '@/app/meals/meals-form-submit';
+import classes from './page.module.css';
 
 export default function ShareMealPage() {
+    const formState = useFormState(shareMeal, { message: null });
     return (
         <>
             <header className={classes.header}>
@@ -17,7 +19,7 @@ export default function ShareMealPage() {
                     <div className={classes.row}>
                         <p>
                             <label htmlFor="name">Your name</label>
-                            <input type="text" id="name" name="name" required />
+                            <input type="text" id="name" name="name" />
                         </p>
                         <p>
                             <label htmlFor="email">Your email</label>
